@@ -1,0 +1,45 @@
+﻿<Window x:Class="HuntingFarm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HuntingFarm"
+        mc:Ignorable="d"
+        Title="{Binding ElementName=MainFrame, Path=Content.Title}" 
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource base_window}"
+        Height="450"
+        Width="800"
+        Closing="Window_Closing"
+        Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{StaticResource additional}"/>
+        <Image Margin="10" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="0" Text="Охотничьи традиции" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource main}"
+                   FontSize="20" FontWeight="Bold"/>
+        <Frame x:Name="MainFrame" Grid.Row="1" 
+               BorderBrush="{StaticResource akcent}"
+               NavigationUIVisibility="Hidden"
+               BorderThickness="1"/>
+        <TextBlock Text="+7 (965) 622-622-9" Foreground="{StaticResource main}" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            
+            <Button x:Name="btnRegistration" Content="Регистрация" Grid.Row="0"
+                Click="BtnRegistration_Click"/>
+            <Button x:Name="btnAutorization" Content="Авторизация" Grid.Row="0"
+                Click="BtnAutorization_Click"/>
+        </StackPanel>
+       
+        <TextBlock x:Name="TextBlockName" Width="Auto" Height="40"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Grid Grid.Row="2" Background="{StaticResource additional}"/>
+    </Grid>
+</Window>
