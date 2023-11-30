@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="27dae2312b9240a785e598ce75c8a259" Name="Diagram1">
+      <Diagram DiagramId="643cdf9d1bd84de3a70f46368ce26dec" Name="Diagram1">
         <EntityTypeShape EntityType="HuntModel.Animal" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="HuntModel.Difficulty" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HuntModel.Gender" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />

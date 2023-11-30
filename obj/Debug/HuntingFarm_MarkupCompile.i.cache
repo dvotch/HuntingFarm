@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\HuntingFarm\App.xaml
-6487694591
-2639884895
-271020749046
+723799820
+2-711170902
+28-365147162
 19-1206411381
-Pages\HuntingEventsPage.xaml;Windows\AutorizationWindow.xaml;Windows\ClientWindow.xaml;Windows\MainWindow.xaml;Windows\OrganizerWindow.xaml;Windows\ReportPage.xaml;
+Pages\HuntingEventsPage.xaml;Windows\AutorizationWindow.xaml;Windows\ClientWindow.xaml;Windows\MainWindow.xaml;Windows\OrganizerWindow.xaml;Windows\RegistrationWindow.xaml;Windows\ReportPage.xaml;
 
-False
+True
 

@@ -5,12 +5,12 @@ namespace HuntingFarm.Models
 {
     public partial class Animal
     {
-        public string GetImage
+        public string GetAnimalImage
         {
             get {
                 if (Image is null)
-                    return Directory.GetCurrentDirectory() + @"\Assets\Animals\default.png";
-                return Directory.GetCurrentDirectory() + @"\Assets\Animals\" + Image.Trim();
+                    return Directory.GetCurrentDirectory() + @"\Images\default.png";
+                return Directory.GetCurrentDirectory() + @"\Images\Animals\" + Image.Trim();
             }
         }
     }

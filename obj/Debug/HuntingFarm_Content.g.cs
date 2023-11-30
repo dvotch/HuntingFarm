@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/huntingfarmentities.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/huntingfarmentities.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/huntingfarmmodel.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/huntingfarmmodel.tt")]
 
 

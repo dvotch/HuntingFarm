@@ -8,7 +8,7 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DifficultyId" Type="Int32" Nullable="false" />
-    <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Difficulty" Relationship="Self.FK_Animal_Difficulty" FromRole="Animal" ToRole="Difficulty" />
     <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_Animal" FromRole="Animal" ToRole="Hunting" />
   </EntityType>
@@ -36,8 +36,8 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="HuntingEvents" Relationship="Self.FK_HuntingReport_House" FromRole="House" ToRole="HuntingEvents" />
+    <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_House" FromRole="House" ToRole="Hunting" />
   </EntityType>
   <EntityType Name="Hunting">
     <Key>
@@ -46,21 +46,12 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="AnimalId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Animal" Relationship="Self.FK_Hunting_Animal" FromRole="Hunting" ToRole="Animal" />
-    <NavigationProperty Name="HuntingEvents" Relationship="Self.FK_HuntingReport_Hunting" FromRole="Hunting" ToRole="HuntingEvents" />
-  </EntityType>
-  <EntityType Name="HuntingEvent">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="HouseId" Type="Int32" Nullable="false" />
-    <Property Name="HuntingId" Type="Int32" Nullable="false" />
+    <Property Name="HouseId" Type="Int32" />
     <Property Name="ClientId" Type="Int32" Nullable="false" />
-    <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
-    <NavigationProperty Name="House" Relationship="Self.FK_HuntingReport_House" FromRole="HuntingEvents" ToRole="House" />
-    <NavigationProperty Name="Hunting" Relationship="Self.FK_HuntingReport_Hunting" FromRole="HuntingEvents" ToRole="Hunting" />
-    <NavigationProperty Name="User" Relationship="Self.FK_HuntingReport_User" FromRole="HuntingEvents" ToRole="User" />
+    <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_Hunting_Animal" FromRole="Hunting" ToRole="Animal" />
+    <NavigationProperty Name="House" Relationship="Self.FK_Hunting_House" FromRole="Hunting" ToRole="House" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Hunting_User" FromRole="Hunting" ToRole="User" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -96,7 +87,7 @@
     <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Experience" Type="Int32" />
     <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
-    <NavigationProperty Name="HuntingEvents" Relationship="Self.FK_HuntingReport_User" FromRole="User" ToRole="HuntingEvents" />
+    <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_User" FromRole="User" ToRole="Hunting" />
     <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
   </EntityType>
   <Association Name="FK_Animal_Difficulty">
@@ -135,38 +126,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HuntingReport_House">
-    <End Role="House" Type="Self.House" Multiplicity="1" />
-    <End Role="HuntingEvents" Type="Self.HuntingEvent" Multiplicity="*" />
+  <Association Name="FK_Hunting_House">
+    <End Role="House" Type="Self.House" Multiplicity="0..1" />
+    <End Role="Hunting" Type="Self.Hunting" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="House">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="HuntingEvents">
+      <Dependent Role="Hunting">
         <PropertyRef Name="HouseId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HuntingReport_Hunting">
-    <End Role="Hunting" Type="Self.Hunting" Multiplicity="1" />
-    <End Role="HuntingEvents" Type="Self.HuntingEvent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Hunting">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="HuntingEvents">
-        <PropertyRef Name="HuntingId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_HuntingReport_User">
+  <Association Name="FK_Hunting_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="HuntingEvents" Type="Self.HuntingEvent" Multiplicity="*" />
+    <End Role="Hunting" Type="Self.Hunting" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="HuntingEvents">
+      <Dependent Role="Hunting">
         <PropertyRef Name="ClientId" />
       </Dependent>
     </ReferentialConstraint>
@@ -189,7 +168,6 @@
     <EntitySet Name="Genders" EntityType="Self.Gender" />
     <EntitySet Name="Houses" EntityType="Self.House" />
     <EntitySet Name="Huntings" EntityType="Self.Hunting" />
-    <EntitySet Name="HuntingEvents" EntityType="Self.HuntingEvent" />
     <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="Self.User" />
@@ -205,17 +183,13 @@
       <End Role="Gender" EntitySet="Genders" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="FK_HuntingReport_House" Association="Self.FK_HuntingReport_House">
+    <AssociationSet Name="FK_Hunting_House" Association="Self.FK_Hunting_House">
       <End Role="House" EntitySet="Houses" />
-      <End Role="HuntingEvents" EntitySet="HuntingEvents" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HuntingReport_Hunting" Association="Self.FK_HuntingReport_Hunting">
       <End Role="Hunting" EntitySet="Huntings" />
-      <End Role="HuntingEvents" EntitySet="HuntingEvents" />
     </AssociationSet>
-    <AssociationSet Name="FK_HuntingReport_User" Association="Self.FK_HuntingReport_User">
+    <AssociationSet Name="FK_Hunting_User" Association="Self.FK_Hunting_User">
       <End Role="User" EntitySet="Users" />
-      <End Role="HuntingEvents" EntitySet="HuntingEvents" />
+      <End Role="Hunting" EntitySet="Huntings" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
       <End Role="Role" EntitySet="Roles" />

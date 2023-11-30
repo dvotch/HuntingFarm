@@ -42,8 +42,10 @@
                             <ColumnDefinition Width="60"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Width="60" Height="40" Stretch="Uniform" Margin="5 0 5 0"/>
+                        <Image Width="60" Height="40" Grid.Column="0" Stretch="Uniform" Margin="5 0 5 0" Source="{Binding Path=Animal.GetAnimalImage}"/>
+
                         <StackPanel Grid.Column="1">
+                            
                             <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Name}"
                                        Width="auto" HorizontalAlignment="Left"/>
                             <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Animal.Name}"

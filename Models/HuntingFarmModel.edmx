@@ -13,7 +13,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="DifficultyId" Type="int" Nullable="false" />
-          <Property Name="Image" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Difficulty">
           <Key>
@@ -37,7 +37,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Image" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Hunting">
           <Key>
@@ -46,7 +46,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AnimalId" Type="int" Nullable="false" />
-          <Property Name="HouseId" Type="int" Nullable="false" />
+          <Property Name="HouseId" Type="int" />
           <Property Name="ClientId" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
@@ -108,7 +108,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Hunting_House">
-          <End Role="House" Type="Self.House" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="0..1" />
           <End Role="Hunting" Type="Self.Hunting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="House">
@@ -202,7 +202,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DifficultyId" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Difficulty" Relationship="Self.FK_Animal_Difficulty" FromRole="Animal" ToRole="Difficulty" />
           <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_Animal" FromRole="Animal" ToRole="Hunting" />
         </EntityType>
@@ -230,7 +230,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_House" FromRole="House" ToRole="Hunting" />
         </EntityType>
         <EntityType Name="Hunting">
@@ -240,7 +240,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AnimalId" Type="Int32" Nullable="false" />
-          <Property Name="HouseId" Type="Int32" Nullable="false" />
+          <Property Name="HouseId" Type="Int32" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="Animal" Relationship="Self.FK_Hunting_Animal" FromRole="Hunting" ToRole="Animal" />
@@ -321,7 +321,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Hunting_House">
-          <End Role="House" Type="Self.House" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="0..1" />
           <End Role="Hunting" Type="Self.Hunting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="House">

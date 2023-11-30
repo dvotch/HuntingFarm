@@ -31,3 +31,5 @@ D:\HuntingFarm\obj\Debug\Windows\ReportPage.baml
 D:\HuntingFarm\obj\Debug\HuntingFarm.csproj.CopyComplete
 D:\HuntingFarm\obj\Debug\Pages\HuntingEventsPage.g.cs
 D:\HuntingFarm\obj\Debug\Pages\HuntingEventsPage.baml
+D:\HuntingFarm\obj\Debug\Windows\RegistrationWindow.g.cs
+D:\HuntingFarm\obj\Debug\Windows\RegistrationWindow.baml

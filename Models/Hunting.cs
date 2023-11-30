@@ -17,7 +17,7 @@ namespace HuntingFarm.Models
         public int id { get; set; }
         public string Name { get; set; }
         public int AnimalId { get; set; }
-        public int HouseId { get; set; }
+        public Nullable<int> HouseId { get; set; }
         public int ClientId { get; set; }
         public decimal Cost { get; set; }
     

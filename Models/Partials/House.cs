@@ -9,12 +9,12 @@ namespace HuntingFarm.Models
 {
     public partial class House
     {
-        public string GetImage
+        public string GetHouseImage
         {
             get
             {
                 if (Image is null)
-                    return Directory.GetCurrentDirectory() + @"\Assets\Images\default.png";
+                    return Directory.GetCurrentDirectory() + @"\Assets\default.png";
                 return Directory.GetCurrentDirectory() + @"\Assets\Images\" + Image.Trim();
             }
         }

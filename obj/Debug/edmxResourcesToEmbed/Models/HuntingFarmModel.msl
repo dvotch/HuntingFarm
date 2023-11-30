@@ -45,15 +45,7 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HuntingEvents">
-      <EntityTypeMapping TypeName="HuntModel.HuntingEvent">
-        <MappingFragment StoreEntitySet="HuntingEvents">
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="HouseId" ColumnName="HouseId" />
-          <ScalarProperty Name="HuntingId" ColumnName="HuntingId" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="Cost" ColumnName="Cost" />
         </MappingFragment>

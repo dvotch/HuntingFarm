@@ -37,12 +37,30 @@ namespace HuntingFarm
         {
             try
             {
-
+                RegistrationWindow registrationWindow = new RegistrationWindow();
+                if (registrationWindow.ShowDialog() == true)
+                {
+                    int role = Manager.CurrentUser.RoleId;
+                    if (role == 1)
+                    {
+                        ClientWindow clientWindow = new ClientWindow();
+                        clientWindow.Owner = this;
+                        this.Hide();
+                        clientWindow.Show();
+                    }
+                    if (role == 2)
+                    {
+                        OrganizerWindow organizerWindow = new OrganizerWindow();
+                        organizerWindow.Owner = this;
+                        this.Hide();
+                        organizerWindow.Show();
+                    }
+                }
 
             }
             catch
             {
-
+                MessageBox.Show("Ошибка");
             }
         }
 

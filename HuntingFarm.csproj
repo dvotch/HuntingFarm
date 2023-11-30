@@ -37,6 +37,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>HuntingFarm.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -69,43 +72,43 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Animal.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Difficulty.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Gender.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\House.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hunting.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HuntingFarmEntities.Context.cs">
+    <Compile Include="Models\HuntingFarmModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HuntingFarmEntities.Context.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HuntingFarmEntities.cs">
+    <Compile Include="Models\HuntingFarmModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HuntingFarmEntities.Designer.cs">
+    <Compile Include="Models\HuntingFarmModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HuntingFarmEntities.edmx</DependentUpon>
+      <DependentUpon>HuntingFarmModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Role.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>HuntingFarmEntities.tt</DependentUpon>
+      <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\HuntingEventsPage.xaml.cs">
       <DependentUpon>HuntingEventsPage.xaml</DependentUpon>
@@ -118,6 +121,9 @@
     </Compile>
     <Compile Include="Windows\OrganizerWindow.xaml.cs">
       <DependentUpon>OrganizerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RegistrationWindow.xaml.cs">
+      <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
@@ -155,6 +161,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,12 +188,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\HuntingFarmEntities.edmx">
+    <EntityDeploy Include="Models\HuntingFarmModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HuntingFarmEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>HuntingFarmModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\HuntingFarmEntities.edmx.diagram">
-      <DependentUpon>HuntingFarmEntities.edmx</DependentUpon>
+    <None Include="Models\HuntingFarmModel.edmx.diagram">
+      <DependentUpon>HuntingFarmModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -195,10 +205,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Animals\1.jpg" />
+    <Resource Include="Images\Animals\1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Houses\1.jpg" />
+    <Resource Include="Images\Houses\1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\image.png" />
@@ -208,15 +218,21 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\HuntingFarmEntities.Context.tt">
+    <Resource Include="Images\default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\HuntingFarmModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HuntingFarmEntities.edmx</DependentUpon>
-      <LastGenOutput>HuntingFarmEntities.Context.cs</LastGenOutput>
+      <DependentUpon>HuntingFarmModel.edmx</DependentUpon>
+      <LastGenOutput>HuntingFarmModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\HuntingFarmEntities.tt">
+    <Content Include="Models\HuntingFarmModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HuntingFarmEntities.edmx</DependentUpon>
-      <LastGenOutput>HuntingFarmEntities.cs</LastGenOutput>
+      <DependentUpon>HuntingFarmModel.edmx</DependentUpon>
+      <LastGenOutput>HuntingFarmModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
