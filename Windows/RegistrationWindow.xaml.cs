@@ -28,20 +28,28 @@ namespace HuntingFarm.Windows
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
+            StringBuilder _errors = CheckFields();
+            if (_errors.Length > 0)
+            {
+                MessageBox.Show(_errors.ToString());
+                return;
+            }
             try
             {
+                string passowrd = (bool)CheckBoxShowPassword.IsChecked ? TbPassword.Text : PasswordBox.Password;
                 User user = new User()
                 {
                     Name = TbName.Text,
                     Surname = TbSurname.Text,
                     Patronymic = TbPatronymic.Text,
-                    Birthday = DataPickerBirthday.SelectedDate ?? DateTime.Now,
+                    Birthday = (DateTime)DatePickerBirthday.SelectedDate,
                     RoleId = 1,
                     GenderId = (ComboGender.SelectedItem as Gender).id,
                     Email = TbEmail.Text,
-                    Password = TbPassword.Text,
+                    Password = passowrd,
                     Login = TbLogin.Text,
-                    Experience = int.Parse(TbExperience.Text)
+                    Experience = int.Parse(TbExperience.Text),
+                    Image = null,
                 };
 
                 HuntEntities.GetContext().Users.Add(user);
@@ -52,6 +60,82 @@ namespace HuntingFarm.Windows
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private bool CheckPassword(string password)
+        {
+            if (password.Length < 6) return false;
+            if (password.ToLower() == password || password.ToUpper() == password) return false;
+            int count = 0, spec = 0;
+            for (int i = 0; i < password.Length;i++)
+            {
+                if (char.IsDigit(password[i])) count++;
+                if (!char.IsLetterOrDigit(password[i])) spec++;
+            }
+            if(count == 0 || spec == 0) return false;
+            return true;
+        }
+
+        private StringBuilder CheckFields()
+        {
+            StringBuilder sb = new StringBuilder();
+            User login = HuntEntities.GetContext().Users.FirstOrDefault(p => p.Login == TbLogin.Text);
+            if (string.IsNullOrWhiteSpace(TbSurname.Text)) sb.AppendLine("Введите фамилию");
+            if (string.IsNullOrWhiteSpace(TbName.Text)) sb.AppendLine("Введите имя");
+            if (!CheckBirthday(DatePickerBirthday.SelectedDate)) sb.AppendLine("Введите дату, либо вам меньше 18");
+            if (ComboGender.SelectedIndex == -1) sb.AppendLine("Выберите пол");
+            if ((string.IsNullOrWhiteSpace(PasswordBox.Password) || string.IsNullOrWhiteSpace(PasswordBoxAgain.Password) && CheckBoxShowPassword.IsChecked == false)) sb.AppendLine("Введите пароль");
+            else if ((string.IsNullOrWhiteSpace(TbPassword.Text) || string.IsNullOrWhiteSpace(TbPasswordAgain.Text) && CheckBoxShowPassword.IsChecked == true)) sb.AppendLine("Введите пароль");
+            else
+            {
+                if (CheckBoxShowPassword.IsChecked == true)
+                {
+                    if (TbPassword.Text != TbPasswordAgain.Text) sb.AppendLine("Пароли отличаются");
+                    else if (!CheckPassword(TbPassword.Text)) sb.AppendLine("Пароль не соответствует требованиям:\n - не менее 6символов; " +
+                        "\n - заглавные и строчные буквы;\n - не менее одного спецсимвола;\n - неменее одной цифры.");
+                }
+                else
+                {
+                    if(PasswordBox.Password != PasswordBoxAgain.Password) sb.AppendLine("Пароли отличаются");
+                    else if (!CheckPassword(PasswordBox.Password)) sb.AppendLine("Пароль не соответствует требованиям:\n - не менее 6символов; " +
+                        "\n - заглавные и строчные буквы;\n - не менее одного спецсимвола;\n - неменее одной цифры.");
+                }
+            }
+            if (string.IsNullOrWhiteSpace(TbLogin.Text)) sb.AppendLine("Введите логин");
+            if (login != null) sb.AppendLine("Пользователь с таким логином уже существует");
+            return sb;
+        }
+
+        private bool CheckBirthday(DateTime? date)
+        {
+            if (date == null) return false;
+            TimeSpan timeSpan = DateTime.Now - date ?? new TimeSpan();
+            if (timeSpan.TotalDays / 365 < 18) return false;
+            return true;
+        }
+
+        private void CheckBoxShowPassword_Checked(object sender, RoutedEventArgs e)
+        {
+            TbPassword.Text = PasswordBox.Password;
+            PasswordBox.Visibility = Visibility.Collapsed;
+            TbPassword.Visibility = Visibility.Visible;
+
+            TbPasswordAgain.Text = PasswordBoxAgain.Password;
+            PasswordBoxAgain.Visibility = Visibility.Collapsed;
+            TbPasswordAgain.Visibility = Visibility.Visible;
+            
+            
+        }
+
+        private void CheckBoxShowPassword_Unchecked(object sender, RoutedEventArgs e)
+        {
+            PasswordBox.Password = TbPassword.Text;
+            TbPassword.Visibility = Visibility.Collapsed;
+            PasswordBox.Visibility = Visibility.Visible;
+
+            PasswordBoxAgain.Password = TbPasswordAgain.Text;
+            TbPasswordAgain.Visibility = Visibility.Collapsed; 
+            PasswordBoxAgain.Visibility = Visibility.Visible;
         }
     }
 }

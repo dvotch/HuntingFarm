@@ -45,7 +45,7 @@
                         <Image Width="100" Height="100" Grid.Column="0" Stretch="Uniform" Margin="5 2 5 2" Source="{Binding Path=Animal.GetAnimalImage}"/>
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            
+
                             <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Name}"
                                        Width="auto" HorizontalAlignment="Left"/>
                             <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Animal.Name}"

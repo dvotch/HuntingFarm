@@ -17,28 +17,15 @@ namespace HuntingFarm.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.AccountingEvents = new HashSet<AccountingEvent>();
             this.Huntings = new HashSet<Hunting>();
         }
-
-        public User(string Name, string Surname, string Patronymic, System.DateTime Birthday, int RoleId, int GenderId, string Email, string Password, string Login, Nullable<int> Experience )
-        {
-            this.Name = Name;
-            this.Surname = Surname;
-            this.Patronymic = Patronymic;
-            this.Birthday = Birthday;
-            this.RoleId = RoleId;
-            this.GenderId = GenderId;
-            this.Email = Email;
-            this.Password = Password;
-            this.Login = Login;
-            this.Experience = Experience;
-        }
-
+    
         public int id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
-        public DateTime Birthday { get; set; }
+        public System.DateTime Birthday { get; set; }
         public int RoleId { get; set; }
         public int GenderId { get; set; }
         public string Email { get; set; }
@@ -47,6 +34,8 @@ namespace HuntingFarm.Models
         public Nullable<int> Experience { get; set; }
         public string Image { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AccountingEvent> AccountingEvents { get; set; }
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hunting> Huntings { get; set; }

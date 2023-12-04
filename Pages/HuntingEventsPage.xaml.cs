@@ -17,7 +17,9 @@ namespace HuntingFarm.Pages
         {
             InitializeComponent();
             LoadAndInitData();
+            
         }
+
 
         void LoadAndInitData()
         {

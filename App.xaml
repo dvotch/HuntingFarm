@@ -65,6 +65,13 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="3"/>
         </Style>
+
+        <Style TargetType="TextBlock" x:Key="textblock_textbox_combo">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+        
         <!--стиль для меток ListViewItem -->
         <Style TargetType="ListBoxItem" x:Key="good_item">
             <Setter Property="Background" Value="{Binding GetColor}" />

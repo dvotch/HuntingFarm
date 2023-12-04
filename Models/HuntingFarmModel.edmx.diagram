@@ -4,15 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="643cdf9d1bd84de3a70f46368ce26dec" Name="Diagram1">
-        <EntityTypeShape EntityType="HuntModel.Animal" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuntModel.Difficulty" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuntModel.Gender" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuntModel.House" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuntModel.Hunting" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuntModel.Role" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuntModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuntModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="9731f997a28f4007bc54d39ca511bfcf" Name="Diagram1">
+        <EntityTypeShape EntityType="HuntModel.AccountingEvent" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.Animal" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.Difficulty" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.Gender" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.House" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.Hunting" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.Role" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuntModel.User" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="HuntModel.FK_AccountingEvents_Hunting" ManuallyRouted="false" />
+        <AssociationConnector Association="HuntModel.FK_AccountingEvents_User" ManuallyRouted="false" />
         <AssociationConnector Association="HuntModel.FK_Animal_Difficulty" ManuallyRouted="false" />
         <AssociationConnector Association="HuntModel.FK_Hunting_Animal" ManuallyRouted="false" />
         <AssociationConnector Association="HuntModel.FK_User_Gender" ManuallyRouted="false" />

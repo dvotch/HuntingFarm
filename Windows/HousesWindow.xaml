@@ -1,0 +1,45 @@
+﻿<Window x:Class="HuntingFarm.Windows.HousesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HuntingFarm.Windows"
+        mc:Ignorable="d"
+        Title="Окно домов"
+         Style="{StaticResource base_window}" MinHeight="400" MinWidth="600" Width="600" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{StaticResource additional}"/>
+        <TextBlock Text="Окно домов" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+        <Grid Background="{StaticResource additional}" Grid.Row="2"/>
+        <ListBox x:Name="ListBoxHouses" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                 SelectedValuePath="id"
+                 Grid.Row="1" Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" UseLayoutRounding="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="100" Height="100" Grid.Column="0" Stretch="Uniform" Margin="5 2 5 2" Source="{Binding Path=GetHouseImage}"/>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+
+                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Name}"
+                                       Width="auto" HorizontalAlignment="Left"/>
+                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Description}"
+                                       Width="auto" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button  x:Name="btnAddOrEditHouse" Content="Добавить/Изменить" Grid.Row="2" Click="btnAddOrEditHouse_Click"/>
+    </Grid>
+</Window>

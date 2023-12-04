@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище HuntModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountingEvents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="HuntId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Animal">
           <Key>
             <PropertyRef Name="id" />
@@ -13,7 +22,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="DifficultyId" Type="int" Nullable="false" />
-          <Property Name="Image" Type="nvarchar" MaxLength="20" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Difficulty">
           <Key>
@@ -28,7 +37,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="House">
           <Key>
@@ -37,7 +46,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Image" Type="nvarchar" MaxLength="20" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Hunting">
           <Key>
@@ -46,8 +55,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AnimalId" Type="int" Nullable="false" />
-          <Property Name="HouseId" Type="int" />
-          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="HouseId" Type="int" Nullable="false" />
+          <Property Name="AdminId" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
@@ -55,7 +64,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -72,17 +81,42 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Patronymic" Type="nvarchar" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
           <Property Name="Birthday" Type="date" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="GenderId" Type="int" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Experience" Type="int" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_AccountingEvents_Hunting">
+          <End Role="Hunting" Type="Self.Hunting" Multiplicity="1" />
+          <End Role="AccountingEvents" Type="Self.AccountingEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hunting">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AccountingEvents">
+              <PropertyRef Name="HuntId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEvents_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AccountingEvents" Type="Self.AccountingEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AccountingEvents">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Animal_Difficulty">
           <End Role="Difficulty" Type="Self.Difficulty" Multiplicity="1" />
           <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
@@ -108,7 +142,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Hunting_House">
-          <End Role="House" Type="Self.House" Multiplicity="0..1" />
+          <End Role="House" Type="Self.House" Multiplicity="1" />
           <End Role="Hunting" Type="Self.Hunting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="House">
@@ -127,7 +161,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Hunting">
-              <PropertyRef Name="ClientId" />
+              <PropertyRef Name="AdminId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -156,6 +190,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище HuntModelContainer">
+          <EntitySet Name="AccountingEvents" EntityType="Self.AccountingEvents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Difficulty" EntityType="Self.Difficulty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
@@ -164,6 +199,14 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountingEvents_Hunting" Association="Self.FK_AccountingEvents_Hunting">
+            <End Role="Hunting" EntitySet="Hunting" />
+            <End Role="AccountingEvents" EntitySet="AccountingEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEvents_User" Association="Self.FK_AccountingEvents_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="AccountingEvents" EntitySet="AccountingEvents" />
+          </AssociationSet>
           <AssociationSet Name="FK_Animal_Difficulty" Association="Self.FK_Animal_Difficulty">
             <End Role="Difficulty" EntitySet="Difficulty" />
             <End Role="Animal" EntitySet="Animal" />
@@ -194,6 +237,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HuntModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountingEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="HuntId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Hunting" Relationship="Self.FK_AccountingEvents_Hunting" FromRole="AccountingEvents" ToRole="Hunting" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AccountingEvents_User" FromRole="AccountingEvents" ToRole="User" />
+        </EntityType>
         <EntityType Name="Animal">
           <Key>
             <PropertyRef Name="id" />
@@ -202,7 +256,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DifficultyId" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Difficulty" Relationship="Self.FK_Animal_Difficulty" FromRole="Animal" ToRole="Difficulty" />
           <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_Animal" FromRole="Animal" ToRole="Hunting" />
         </EntityType>
@@ -220,7 +274,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="House">
@@ -230,7 +284,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_House" FromRole="House" ToRole="Hunting" />
         </EntityType>
         <EntityType Name="Hunting">
@@ -240,9 +294,10 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AnimalId" Type="Int32" Nullable="false" />
-          <Property Name="HouseId" Type="Int32" />
-          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="HouseId" Type="Int32" Nullable="false" />
+          <Property Name="AdminId" Type="Int32" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="AccountingEvents" Relationship="Self.FK_AccountingEvents_Hunting" FromRole="Hunting" ToRole="AccountingEvents" />
           <NavigationProperty Name="Animal" Relationship="Self.FK_Hunting_Animal" FromRole="Hunting" ToRole="Animal" />
           <NavigationProperty Name="House" Relationship="Self.FK_Hunting_House" FromRole="Hunting" ToRole="House" />
           <NavigationProperty Name="User" Relationship="Self.FK_Hunting_User" FromRole="Hunting" ToRole="User" />
@@ -252,7 +307,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -270,20 +325,46 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Patronymic" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="GenderId" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Experience" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountingEvents" Relationship="Self.FK_AccountingEvents_User" FromRole="User" ToRole="AccountingEvents" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="Huntings" Relationship="Self.FK_Hunting_User" FromRole="User" ToRole="Hunting" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
+        <Association Name="FK_AccountingEvents_Hunting">
+          <End Role="Hunting" Type="Self.Hunting" Multiplicity="1" />
+          <End Role="AccountingEvents" Type="Self.AccountingEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hunting">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AccountingEvents">
+              <PropertyRef Name="HuntId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEvents_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AccountingEvents" Type="Self.AccountingEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AccountingEvents">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Animal_Difficulty">
           <End Role="Difficulty" Type="Self.Difficulty" Multiplicity="1" />
           <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
@@ -321,7 +402,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Hunting_House">
-          <End Role="House" Type="Self.House" Multiplicity="0..1" />
+          <End Role="House" Type="Self.House" Multiplicity="1" />
           <End Role="Hunting" Type="Self.Hunting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="House">
@@ -340,7 +421,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Hunting">
-              <PropertyRef Name="ClientId" />
+              <PropertyRef Name="AdminId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -357,6 +438,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HuntEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountingEvents" EntityType="Self.AccountingEvent" />
           <EntitySet Name="Animals" EntityType="Self.Animal" />
           <EntitySet Name="Difficulties" EntityType="Self.Difficulty" />
           <EntitySet Name="Genders" EntityType="Self.Gender" />
@@ -365,6 +447,14 @@
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_AccountingEvents_Hunting" Association="Self.FK_AccountingEvents_Hunting">
+            <End Role="Hunting" EntitySet="Huntings" />
+            <End Role="AccountingEvents" EntitySet="AccountingEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEvents_User" Association="Self.FK_AccountingEvents_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AccountingEvents" EntitySet="AccountingEvents" />
+          </AssociationSet>
           <AssociationSet Name="FK_Animal_Difficulty" Association="Self.FK_Animal_Difficulty">
             <End Role="Difficulty" EntitySet="Difficulties" />
             <End Role="Animal" EntitySet="Animals" />
@@ -396,6 +486,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище HuntModelContainer" CdmEntityContainer="HuntEntities">
+          <EntitySetMapping Name="AccountingEvents">
+            <EntityTypeMapping TypeName="HuntModel.AccountingEvent">
+              <MappingFragment StoreEntitySet="AccountingEvents">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="HuntId" ColumnName="HuntId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Animals">
             <EntityTypeMapping TypeName="HuntModel.Animal">
               <MappingFragment StoreEntitySet="Animal">
@@ -441,7 +541,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
                 <ScalarProperty Name="HouseId" ColumnName="HouseId" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -479,6 +579,7 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

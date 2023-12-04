@@ -1,0 +1,46 @@
+﻿<Window x:Class="HuntingFarm.Windows.AddOrEditHuntEventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HuntingFarm.Windows"
+        mc:Ignorable="d"
+         Title="Добавление мероприятие" Height="360" Width="320" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{StaticResource additional}"/>
+        <TextBlock Text="Добавление мероприятие" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10 0 0 0">
+            <TextBlock Text="Название:" Style="{StaticResource textblock_textbox_combo}" Width="150"/>
+            <TextBox x:Name="TbName" Width="150" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Животное:" Style="{StaticResource textblock_textbox_combo}" Width="150"/>
+            <ComboBox x:Name="ComboAnimal" DisplayMemberPath="Name" Width="150" />
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Дом:" Style="{StaticResource textblock_textbox_combo}" Width="150"/>
+            <ComboBox DisplayMemberPath="Name" x:Name="ComboHouse" Width="150" />
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Администратор:" Style="{StaticResource textblock_textbox_combo}" Width="150"/>
+            <ComboBox DisplayMemberPath="Name" x:Name="ComboAdmin" Width="150" />
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Стоимость:" Style="{StaticResource textblock_textbox_combo}" Width="150"/>
+            <TextBox x:Name="TbCost" Width="150"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Grid.Row="6" HorizontalAlignment="Center">
+            <Button Content="Добавить" Width="120" x:Name="btnOk" Click="btnOk_Click"/>
+            <Button Content="Отмена" Width="120" x:Name="btnCancle" Click="btnCancle_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

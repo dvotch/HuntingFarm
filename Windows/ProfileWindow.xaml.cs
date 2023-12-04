@@ -30,13 +30,12 @@ namespace HuntingFarm.Windows
         {
             TbTime.Text = getTimeText();
             TbName.Text = getUserName();
-            MessageBox.Show(Manager.CurrentUser.Image);
             ImagePhoto.Source = new BitmapImage(new Uri(Manager.CurrentUser.GetPhoto, UriKind.Absolute));
-            if (Manager.CurrentUser.id == 1)
+            if (Manager.CurrentUser.RoleId == 1)
             {
                 StackPanelUser.Visibility = Visibility.Visible;
             }
-            if (Manager.CurrentUser.id == 2)
+            if (Manager.CurrentUser.RoleId == 2)
             {
                 StackPanelAdmin.Visibility = Visibility.Visible;
             }
@@ -56,23 +55,32 @@ namespace HuntingFarm.Windows
 
         private string getUserName()
         {
-            if (Manager.CurrentUser.GenderId == 1) return "Mr " + Manager.CurrentUser.Name + Manager.CurrentUser.Patronymic + Manager.CurrentUser.Surname;
+            if (Manager.CurrentUser.GenderId == 1) return "Mr " + Manager.CurrentUser.Name + Manager.CurrentUser.Patronymic + " " + Manager.CurrentUser.Surname;
             return "Ms " + Manager.CurrentUser.Name + Manager.CurrentUser.Patronymic + Manager.CurrentUser.Surname;
         }
 
         private void BtnAddHuntEvents_Click(object sender, RoutedEventArgs e)
         {
-
+            EventsWindow eventsWindow = new EventsWindow();
+            eventsWindow.Owner = this;
+            this.Hide();
+            eventsWindow.Show();
         }
 
         private void BtnAddAnimal_Click(object sender, RoutedEventArgs e)
         {
-
+            AnimalsWindow animalsWindow = new AnimalsWindow();
+            animalsWindow.Owner = this;
+            this.Hide();
+            animalsWindow.Show();
         }
 
         private void BtnAddHouse_Click(object sender, RoutedEventArgs e)
         {
-
+            HousesWindow housesWindow = new HousesWindow();
+            housesWindow.Owner = this;
+            this.Hide();
+            housesWindow.Show();
         }
 
         private void BtnSignUpOnEvent_Click(object sender, RoutedEventArgs e)

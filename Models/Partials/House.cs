@@ -14,8 +14,8 @@ namespace HuntingFarm.Models
             get
             {
                 if (Image is null)
-                    return Directory.GetCurrentDirectory() + @"\Assets\default.png";
-                return Directory.GetCurrentDirectory() + @"\Assets\Images\" + Image.Trim();
+                    return Directory.GetCurrentDirectory() + @"\Images\default.png";
+                return Directory.GetCurrentDirectory() + @"\Images\Houses\" + Image.Trim();
             }
         }
     }

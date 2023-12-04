@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace HuntingFarm.Models
 {
-    class Manager
+    public partial class Manager
     {
         public static Frame MainFrame {get;set;}
         public static User CurrentUser { get; set; }

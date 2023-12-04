@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HuntingFarm.Windows"
         mc:Ignorable="d"
         Title="Авторизация" Height="200" Width="400" Style="{StaticResource base_window}"
-        MinHeight="400" MinWidth="400" ResizeMode="NoResize">
+        MinHeight="350" MinWidth="400" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -16,6 +16,7 @@
             <RowDefinition Height="100" x:Name="RowCaptcha2"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid Background="{StaticResource additional}"/>
         <TextBlock Text="Авторизация пользователя" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Логин:" Width="150"  Margin="30 0 0 0" VerticalAlignment="Center"/>

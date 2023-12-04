@@ -42,20 +42,23 @@ namespace HuntingFarm
                 if (registrationWindow.ShowDialog() == true)
                 {
                     int role = Manager.CurrentUser.RoleId;
-                    if (role == 1)
+                     if (role == 1)
                     {
-                        
-                        ClientWindow clientWindow = new ClientWindow();
-                        clientWindow.Owner = this;
-                        this.Hide();
-                        clientWindow.Show();
+                        btnRegistration.Visibility = Visibility.Hidden;
+                        btnAutorization.Content = "Профиль";
+                        btnAutorization.Click += HandleClickProfile;
+                        btnAutorization.Click -= BtnAutorization_Click;
+                        MainFrame.Navigate(new HuntingEventsClientPage());
+                        Manager.MainFrame = MainFrame;
                     }
                     if (role == 2)
                     {
-                        OrganizerWindow organizerWindow = new OrganizerWindow();
-                        organizerWindow.Owner = this;
-                        this.Hide();
-                        organizerWindow.Show();
+                        btnRegistration.Visibility = Visibility.Hidden;
+                        btnAutorization.Content = "Профиль";
+                        btnAutorization.Click += HandleClickProfile;
+                        btnAutorization.Click -= BtnAutorization_Click;
+                        MainFrame.Navigate(new HuntingEventsClientPage());
+                        Manager.MainFrame = MainFrame;
                     }
                 }
 
@@ -89,10 +92,8 @@ namespace HuntingFarm
                         btnAutorization.Content = "Профиль";
                         btnAutorization.Click += HandleClickProfile;
                         btnAutorization.Click -= BtnAutorization_Click;
-                        OrganizerWindow organizerWindow = new OrganizerWindow();
-                        organizerWindow.Owner = this;
-                        this.Hide();
-                        organizerWindow.Show();
+                        MainFrame.Navigate(new HuntingEventsClientPage());
+                        Manager.MainFrame = MainFrame;
                     }
                 }
             }

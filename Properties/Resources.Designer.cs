@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HuntingFarm.Properties {
+namespace HuntingFarmEntities.Properties {
     using System;
     
     

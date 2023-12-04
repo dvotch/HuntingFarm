@@ -25,6 +25,7 @@ namespace HuntingFarm.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AccountingEvent> AccountingEvents { get; set; }
         public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<Difficulty> Difficulties { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }

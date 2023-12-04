@@ -1,0 +1,36 @@
+﻿<Window x:Class="HuntingFarm.Windows.AddOrEditHouseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HuntingFarm.Windows"
+        mc:Ignorable="d"
+        Title="Добавление дома" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{StaticResource additional}"/>
+        <TextBlock Text="Добавление дома" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Название:" Style="{StaticResource textblock_textbox_combo}" />
+            <TextBox x:Name="TbName" Width="150" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Описание:" Style="{StaticResource textblock_textbox_combo}" />
+            <TextBox x:Name="TbDescription" Width="150"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button x:Name="btnLoadImage" Width="120" HorizontalAlignment="Left" Content="Загрузить фото" Click="btnLoadImage_Click"/>
+            <Image x:Name="ImagePreview" Height="60"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Grid.Row="5" HorizontalAlignment="Center">
+            <Button Content="Добавить" Width="120" x:Name="btnOk" Click="btnOk_Click"/>
+            <Button Content="Отмена" Width="120" x:Name="btnCancle" Click="btnCancle_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

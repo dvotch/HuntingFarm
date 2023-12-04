@@ -1,0 +1,44 @@
+﻿<Window x:Class="HuntingFarm.Windows.AccountingsClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HuntingFarm.Windows"
+        mc:Ignorable="d"
+        Title="AccountingsClientPage"  MinHeight="400" MinWidth="400" Style="{StaticResource base_window}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TbHeader" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Background="{StaticResource additional}"/>
+        <Grid Background="{StaticResource additional}" Grid.Row="2"/>
+        <ListBox Grid.Row="1">
+            <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Grid HorizontalAlignment="Stretch" UseLayoutRounding="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                        <Image Width="100" Height="100" Grid.Column="0" Stretch="Uniform" Margin="5 2 5 2" Source="{Binding Path=Animal.GetAnimalImage}"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Name}"
+                                       Width="auto" HorizontalAlignment="Left"/>
+                        <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Animal.Name}"
+                                       Width="auto" HorizontalAlignment="Left"/>
+                        <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=House.Name}"
+                                       Width="auto" HorizontalAlignment="Left"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="3" Content="Записаться" x:Name="btnSignUpForEvent" Click="btnSignUpForEvent_Click"/>
+                </Grid>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

@@ -14,13 +14,21 @@ namespace HuntingFarm.Models
     
     public partial class Hunting
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Hunting()
+        {
+            this.AccountingEvents = new HashSet<AccountingEvent>();
+        }
+    
         public int id { get; set; }
         public string Name { get; set; }
         public int AnimalId { get; set; }
-        public Nullable<int> HouseId { get; set; }
-        public int ClientId { get; set; }
+        public int HouseId { get; set; }
+        public int AdminId { get; set; }
         public decimal Cost { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AccountingEvent> AccountingEvents { get; set; }
         public virtual Animal Animal { get; set; }
         public virtual House House { get; set; }
         public virtual User User { get; set; }

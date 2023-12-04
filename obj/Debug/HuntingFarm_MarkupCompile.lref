@@ -2,11 +2,16 @@
 FC:\Users\Dvotch\Desktop\HuntingFarm-master\App.xaml;;
 FC:\Users\Dvotch\Desktop\HuntingFarm-master\Pages\HuntingEventsClientPage.xaml;;
 FC:\Users\Dvotch\Desktop\HuntingFarm-master\Pages\HuntingEventsPage.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\AccountingsClientWindow.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\AddAnimalWindow.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\AddOrEditHouseWindow.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\AddOrEditHuntEventWindow.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\AnimalsWindow.xaml;;
 FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\AutorizationWindow.xaml;;
-FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\ClientWindow.xaml;;
 FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\MainWindow.xaml;;
-FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\OrganizerWindow.xaml;;
 FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\ProfileWindow.xaml;;
 FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\RegistrationWindow.xaml;;
-FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\ReportPage.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\SelectDateWindow.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\HousesWindow.xaml;;
+FC:\Users\Dvotch\Desktop\HuntingFarm-master\Windows\EventsWindow.xaml;;
 
