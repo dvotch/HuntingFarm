@@ -41,27 +41,13 @@ namespace HuntingFarm
                 RegistrationWindow registrationWindow = new RegistrationWindow();
                 if (registrationWindow.ShowDialog() == true)
                 {
-                    int role = Manager.CurrentUser.RoleId;
-                     if (role == 1)
-                    {
                         btnRegistration.Visibility = Visibility.Hidden;
                         btnAutorization.Content = "Профиль";
                         btnAutorization.Click += HandleClickProfile;
                         btnAutorization.Click -= BtnAutorization_Click;
-                        MainFrame.Navigate(new HuntingEventsClientPage());
+                        MainFrame.Navigate(new HuntingEventsPage());
                         Manager.MainFrame = MainFrame;
-                    }
-                    if (role == 2)
-                    {
-                        btnRegistration.Visibility = Visibility.Hidden;
-                        btnAutorization.Content = "Профиль";
-                        btnAutorization.Click += HandleClickProfile;
-                        btnAutorization.Click -= BtnAutorization_Click;
-                        MainFrame.Navigate(new HuntingEventsClientPage());
-                        Manager.MainFrame = MainFrame;
-                    }
                 }
-
             }
             catch
             {
@@ -76,25 +62,15 @@ namespace HuntingFarm
                 AutorizationWindow window = new AutorizationWindow();
                 if (window.ShowDialog() == true)
                 {
-                    int role = Manager.CurrentUser.RoleId;
-                    if (role == 1)
-                    {
-                        btnRegistration.Visibility = Visibility.Hidden;
-                        btnAutorization.Content = "Профиль";
-                        btnAutorization.Click += HandleClickProfile;
-                        btnAutorization.Click -= BtnAutorization_Click;
-                        MainFrame.Navigate(new HuntingEventsClientPage());
-                        Manager.MainFrame = MainFrame;
-                    }
-                    if (role == 2)
-                    {
-                        btnRegistration.Visibility = Visibility.Hidden;
-                        btnAutorization.Content = "Профиль";
-                        btnAutorization.Click += HandleClickProfile;
-                        btnAutorization.Click -= BtnAutorization_Click;
-                        MainFrame.Navigate(new HuntingEventsClientPage());
-                        Manager.MainFrame = MainFrame;
-                    }
+                    btnRegistration.Content = "Выйти";
+                    btnRegistration.Click += HandleClickSignOut;
+                    btnRegistration.Click -= BtnRegistration_Click;
+
+                    btnAutorization.Content = "Профиль";
+                    btnAutorization.Click += HandleClickProfile;
+                    btnAutorization.Click -= BtnAutorization_Click;
+                    MainFrame.Navigate(new HuntingEventsPage());
+                    Manager.MainFrame = MainFrame;
                 }
             }
             catch
@@ -107,6 +83,19 @@ namespace HuntingFarm
         {
             ProfileWindow profileWindow = new ProfileWindow();
             profileWindow.Show();
+        }
+        private void HandleClickSignOut(object sender, RoutedEventArgs args)
+        {
+            Manager.CurrentUser = null;
+            btnAutorization.Content = "Авторизация";
+            btnAutorization.Click -= HandleClickProfile;
+            btnAutorization.Click += BtnAutorization_Click;
+
+            btnRegistration.Content = "Регистрация";
+            btnRegistration.Click -= HandleClickSignOut;
+            btnRegistration.Click += BtnRegistration_Click;
+            MainFrame.Navigate(new HuntingEventsPage());
+            Manager.MainFrame = MainFrame;
         }
     }
 }

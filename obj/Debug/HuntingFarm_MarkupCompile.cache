@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Dvotch\Desktop\HuntingFarm-master\App.xaml
-14-1533445431
+14-113628020
 21573629665
-36446261830
+36-876519265
 19227420770
-Pages\HuntingEventsClientPage.xaml;Pages\HuntingEventsPage.xaml;Windows\AccountingsClientWindow.xaml;Windows\AddAnimalWindow.xaml;Windows\AddOrEditHouseWindow.xaml;Windows\AddOrEditHuntEventWindow.xaml;Windows\AnimalsWindow.xaml;Windows\AutorizationWindow.xaml;Windows\EventsWindow.xaml;Windows\HousesWindow.xaml;Windows\MainWindow.xaml;Windows\ProfileWindow.xaml;Windows\RegistrationWindow.xaml;Windows\SelectDateWindow.xaml;
+Pages\HuntingEventsPage.xaml;Windows\AccountingsClientWindow.xaml;Windows\AddAnimalWindow.xaml;Windows\AddOrEditHouseWindow.xaml;Windows\AddOrEditHuntEventWindow.xaml;Windows\AnimalsWindow.xaml;Windows\AutorizationWindow.xaml;Windows\EventsWindow.xaml;Windows\HousesWindow.xaml;Windows\MainWindow.xaml;Windows\ProfileWindow.xaml;Windows\RegistrationWindow.xaml;Windows\SelectDateWindow.xaml;Windows\UsersWindow.xaml;
 
 False
 

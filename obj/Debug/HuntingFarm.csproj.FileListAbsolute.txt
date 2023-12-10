@@ -63,8 +63,6 @@ C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\HuntingFarm.csproj.CoreComp
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\HuntingFarm.csproj.CopyComplete
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\HuntingFarm.exe
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\HuntingFarm.pdb
-C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Pages\HuntingEventsClientPage.g.cs
-C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Pages\HuntingEventsClientPage.baml
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\ProfileWindow.g.cs
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\ProfileWindow.baml
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\AddAnimalWindow.g.cs
@@ -83,3 +81,5 @@ C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\HousesWindow.g.cs
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\HousesWindow.baml
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\EventsWindow.g.cs
 C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\EventsWindow.baml
+C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\UsersWindow.g.cs
+C:\Users\Dvotch\Desktop\HuntingFarm-master\obj\Debug\Windows\UsersWindow.baml

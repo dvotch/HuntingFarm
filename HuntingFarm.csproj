@@ -114,9 +114,6 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>HuntingFarmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\HuntingEventsClientPage.xaml.cs">
-      <DependentUpon>HuntingEventsClientPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\HuntingEventsPage.xaml.cs">
       <DependentUpon>HuntingEventsPage.xaml</DependentUpon>
     </Compile>
@@ -153,10 +150,9 @@
     <Compile Include="Windows\SelectDateWindow.xaml.cs">
       <DependentUpon>SelectDateWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Pages\HuntingEventsClientPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Windows\UsersWindow.xaml.cs">
+      <DependentUpon>UsersWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\HuntingEventsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SelectDateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HuntingFarm.Windows"
         mc:Ignorable="d"
-        Title="AccountingsClientPage"  MinHeight="400" MinWidth="400" Style="{StaticResource base_window}">
+        Title="AccountingsClientPage"  MinHeight="400" Height="400" MinWidth="700" Width="700" WindowStartupLocation="CenterScreen" Style="{StaticResource base_window}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -15,30 +15,30 @@
         <TextBlock x:Name="TbHeader" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Grid Background="{StaticResource additional}"/>
         <Grid Background="{StaticResource additional}" Grid.Row="2"/>
-        <ListBox Grid.Row="1">
+        <ListBox Grid.Row="1" x:Name="ListBoxEvents">
             <ListBox.ItemTemplate>
             <DataTemplate>
                 <Grid HorizontalAlignment="Stretch" UseLayoutRounding="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="80"/>
-                    </Grid.ColumnDefinitions>
-                        <Image Width="100" Height="100" Grid.Column="0" Stretch="Uniform" Margin="5 2 5 2" Source="{Binding Path=Animal.GetAnimalImage}"/>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Name}"
+                        <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="100" Height="100" Grid.Column="0" Stretch="Uniform" Margin="5 2 5 2" Source="{Binding Path=Hunting.Animal.GetAnimalImage}"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Width="400">
+                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Hunting.Name}"
                                        Width="auto" HorizontalAlignment="Left"/>
-                        <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Animal.Name}"
+                        <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Hunting.Animal.Name}"
                                        Width="auto" HorizontalAlignment="Left"/>
-                        <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=House.Name}"
+                        <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=Date}"
                                        Width="auto" HorizontalAlignment="Left"/>
                     </StackPanel>
+                        
 
-                    <Button Grid.Column="3" Content="Записаться" x:Name="btnSignUpForEvent" Click="btnSignUpForEvent_Click"/>
-                </Grid>
+                    </Grid>
             </DataTemplate>
         </ListBox.ItemTemplate>
         </ListBox>
+        <Button Grid.Row="2" Content="Удалить" x:Name="btnDeleteEvent" Click="btnDeleteEvent_Click"/>
     </Grid>
 </Window>

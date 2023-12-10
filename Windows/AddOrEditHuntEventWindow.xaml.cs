@@ -39,29 +39,22 @@ namespace HuntingFarm.Windows
 
             int index = -1;
             for (int i = 0; i < animals.Count; i++)
-            {
                 if (animals[i].id == _currentHunting.AnimalId) index = i;
-            }
+
             ComboAnimal.ItemsSource = animals;
             ComboAnimal.SelectedIndex = index;
 
             index = -1;
             for (int i = 0; i < houses.Count; i++)
-            {
                 if (houses[i].id == _currentHunting.HouseId) index = i;
-            }
+
             ComboHouse.ItemsSource = houses;
             ComboHouse.SelectedIndex = index;
 
             index = -1;
             for (int i = 0; i < users.Count; i++)
-            {
-                
                 if (users[i].id == _currentHunting.AdminId) index = i;
-                MessageBox.Show(index.ToString());
-                MessageBox.Show(users[i].id.ToString());
-                MessageBox.Show(_currentHunting.AdminId.ToString());
-            }
+
             ComboAdmin.ItemsSource = users;
             ComboAdmin.SelectedIndex = index;
             

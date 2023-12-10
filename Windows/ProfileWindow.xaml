@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HuntingFarm.Windows"
         mc:Ignorable="d"
-        Title="Профиль" Style="{StaticResource base_window}" Width="400" Height="500" MinHeight="400" MinWidth="500">
+        Title="Профиль" Style="{StaticResource base_window}" Width="400" WindowStartupLocation="CenterScreen" Height="500" MinHeight="400" MinWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -15,21 +15,26 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid Background="{StaticResource additional}"  Grid.ColumnSpan="2"/>
         <TextBlock x:Name="TbTime" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource add_window_textblock}"/>
         <TextBlock x:Name="TbName" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource add_window_textblock}"/>
-        <Image x:Name="ImagePhoto" Height="120" Grid.Row="3"/>
+        <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
+            <Image x:Name="ImagePhoto" Height="200" Grid.Row="3"/>
+            <Button x:Name="btnUploadPhoto" Content="Загрузить фото" Click="btnUploadPhoto_Click"/>
+        </StackPanel>
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="TbWindow"/>
         <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" x:Name="StackPanelAdmin" Visibility="Hidden">
             <Button x:Name="BtnAddHuntEvents" Click="BtnAddHuntEvents_Click" Content="Добавить мероприятие"/>
             <Button x:Name="BtnAddAnimal" Click="BtnAddAnimal_Click" Content="Добавить животное"/>
             <Button x:Name="BtnAddHouse" Click="BtnAddHouse_Click" Content="Добавить дом"/>
+            <Button x:Name="BtnAddRole" Click="BtnAddRole_Click" Content="Добавить роль"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" x:Name="StackPanelUser" Visibility="Hidden">
-            <Button x:Name="BtnSignUpOnEvent" Click="BtnSignUpOnEvent_Click" Content="Записаться"/>
+            <Button x:Name="BtnMyEvents" Click="BtnMyEvents_Click" Content="Мои мероприятия"/>
+            <Button x:Name="btnEditCurrentUser" Click="btnEditCurrentUser_Click" Content="Изменить профиль"/>
         </StackPanel>
     </Grid>
 </Window>

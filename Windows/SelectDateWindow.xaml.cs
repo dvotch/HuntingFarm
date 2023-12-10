@@ -40,6 +40,8 @@ namespace HuntingFarm.Windows
                 };
                 HuntEntities.GetContext().AccountingEvents.Add(hunting);
                 HuntEntities.GetContext().SaveChanges();
+                MessageBox.Show("Успешно");
+                Close();
             } else
             {
                 MessageBox.Show("Необходимо выбрать дату");

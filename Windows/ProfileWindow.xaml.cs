@@ -1,17 +1,11 @@
 ﻿using HuntingFarm.Models;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HuntingFarm.Windows
 {
@@ -20,6 +14,8 @@ namespace HuntingFarm.Windows
     /// </summary>
     public partial class ProfileWindow : Window
     {
+        private string _photoName = null, _filePath = null, _currentDirectoryClient = Directory.GetCurrentDirectory() + @"\Images\Clients\", _currentDirectoryAdministrator = Directory.GetCurrentDirectory() + @"\Images\Administrators\",
+            _currentDirectoryNull = Directory.GetCurrentDirectory() + @"\Images\";
         public ProfileWindow()
         {
             InitializeComponent();
@@ -83,9 +79,79 @@ namespace HuntingFarm.Windows
             housesWindow.Show();
         }
 
-        private void BtnSignUpOnEvent_Click(object sender, RoutedEventArgs e)
+        private void btnEditCurrentUser_Click(object sender, RoutedEventArgs e)
         {
+            RegistrationWindow registrationWindow = new RegistrationWindow(Manager.CurrentUser);
+            registrationWindow.Owner = this;
+            registrationWindow.Show();
+        }
 
+        private void BtnMyEvents_Click(object sender, RoutedEventArgs e)
+        {
+            AccountingsClientWindow accountingsClientWindow = new AccountingsClientWindow();
+            accountingsClientWindow.Owner = this;
+            accountingsClientWindow.Show();
+        }
+
+        private void BtnAddRole_Click(object sender, RoutedEventArgs e)
+        {
+            UsersWindow usersWindow = new UsersWindow();
+            usersWindow.Show();
+            usersWindow.Owner = this;
+            this.Hide();
+        }
+
+        private void btnUploadPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog op = new OpenFileDialog();
+                op.Title = "Выбор фото";
+                op.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF (*.gif)|*.gif";
+                if (op.ShowDialog() == true)
+                {
+                    ImagePhoto.Source = new BitmapImage(new Uri(op.FileName));
+                    _photoName = op.SafeFileName;
+                    _filePath = op.FileName;
+                }
+                string diretory = Manager.CurrentUser.RoleId == 2 ? _currentDirectoryAdministrator : _currentDirectoryClient;
+                string photo = _photoName == null ? null : ChangePhotoName(diretory);
+                string dest = diretory + photo;
+                if (_photoName != null) File.Copy(_filePath, dest);
+                User user = HuntEntities.GetContext().Users.First(p => p.id == Manager.CurrentUser.id);
+                user.Image = _photoName;
+                HuntEntities.GetContext().SaveChanges();
+                MessageBox.Show("Успешно добавлено");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                _filePath = null;
+            }
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ImagePhoto.Source = new BitmapImage(new Uri(Manager.CurrentUser.GetPhoto, UriKind.Absolute));
+        }
+        string ChangePhotoName(string _currentDirectory)
+        {
+            string x = _currentDirectory + _photoName;
+            string photoName = _photoName;
+            int i = 0;
+            if (File.Exists(x))
+            {
+                while (File.Exists(x))
+                {
+                    i++;
+                    x = _currentDirectory + i.ToString() + photoName;
+                }
+                photoName = i.ToString() + photoName;
+            }
+            _photoName = photoName;
+            return photoName;
         }
     }
+
+
 }

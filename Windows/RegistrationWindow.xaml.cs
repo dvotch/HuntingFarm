@@ -20,10 +20,33 @@ namespace HuntingFarm.Windows
     /// </summary>
     public partial class RegistrationWindow : Window
     {
+        User _currentUser = null;   
         public RegistrationWindow()
         {
             InitializeComponent();
             ComboGender.ItemsSource = HuntEntities.GetContext().Genders.ToList();
+        }
+
+        public RegistrationWindow(User user)
+        { 
+            InitializeComponent();
+            _currentUser = user;
+            StackPanelRole.Visibility = Visibility.Visible;
+            ComboGender.ItemsSource = HuntEntities.GetContext().Genders.ToList();
+            ComboGender.SelectedIndex = Manager.CurrentUser.GenderId;
+            TbName.Text = user.Name;
+            TbSurname.Text = user.Surname;
+            TbPatronymic.Text = user.Patronymic;
+            TbEmail.Text = user.Email;
+            TbExperience.Text = user.Experience.ToString();
+            TbLogin.Text = user.Login;
+            PasswordBox.Password = user.Password;
+            PasswordBoxAgain.Password = user.Password;
+            TbPassword.Text = user.Password;
+            TbPasswordAgain.Text = user.Password;
+            DatePickerBirthday.SelectedDate = user.Birthday;            
+            ComboRole.ItemsSource = HuntEntities.GetContext().Roles.ToList();
+            ComboRole.SelectedIndex = Manager.CurrentUser.RoleId - 1;
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
@@ -37,22 +60,38 @@ namespace HuntingFarm.Windows
             try
             {
                 string passowrd = (bool)CheckBoxShowPassword.IsChecked ? TbPassword.Text : PasswordBox.Password;
-                User user = new User()
+                if (_currentUser == null)
                 {
-                    Name = TbName.Text,
-                    Surname = TbSurname.Text,
-                    Patronymic = TbPatronymic.Text,
-                    Birthday = (DateTime)DatePickerBirthday.SelectedDate,
-                    RoleId = 1,
-                    GenderId = (ComboGender.SelectedItem as Gender).id,
-                    Email = TbEmail.Text,
-                    Password = passowrd,
-                    Login = TbLogin.Text,
-                    Experience = int.Parse(TbExperience.Text),
-                    Image = null,
-                };
-
-                HuntEntities.GetContext().Users.Add(user);
+                    User user = new User()
+                    {
+                        Name = TbName.Text,
+                        Surname = TbSurname.Text,
+                        Patronymic = TbPatronymic.Text,
+                        Birthday = (DateTime)DatePickerBirthday.SelectedDate,
+                        RoleId = 1,
+                        GenderId = (ComboGender.SelectedItem as Gender).id,
+                        Email = TbEmail.Text,
+                        Password = passowrd,
+                        Login = TbLogin.Text,
+                        Experience = int.Parse(TbExperience.Text),
+                        Image = null,
+                    };
+                    HuntEntities.GetContext().Users.Add(user);
+                } else
+                {
+                    User user = HuntEntities.GetContext().Users.First(p => p.id == _currentUser.id);
+                    user.Name = TbName.Text;
+                    user.Surname = TbSurname.Text;
+                    user.Patronymic = TbPatronymic.Text;
+                    user.Birthday = (DateTime)DatePickerBirthday.SelectedDate;
+                    user.RoleId = (ComboRole.SelectedItem as Role).id;
+                    user.GenderId = (ComboGender.SelectedItem as Gender).id;
+                    user.Email = TbEmail.Text;
+                    user.Password = passowrd;
+                    user.Login = TbLogin.Text;
+                    user.Experience = int.Parse(TbExperience.Text);
+                    user.Image = _currentUser.Image;
+                }
                 HuntEntities.GetContext().SaveChanges();
                 MessageBox.Show("Успешно");
 
@@ -79,7 +118,9 @@ namespace HuntingFarm.Windows
         private StringBuilder CheckFields()
         {
             StringBuilder sb = new StringBuilder();
-            User login = HuntEntities.GetContext().Users.FirstOrDefault(p => p.Login == TbLogin.Text);
+            User login = null;
+            if (_currentUser == null)
+                login = HuntEntities.GetContext().Users.FirstOrDefault(p => p.Login == TbLogin.Text);
             if (string.IsNullOrWhiteSpace(TbSurname.Text)) sb.AppendLine("Введите фамилию");
             if (string.IsNullOrWhiteSpace(TbName.Text)) sb.AppendLine("Введите имя");
             if (!CheckBirthday(DatePickerBirthday.SelectedDate)) sb.AppendLine("Введите дату, либо вам меньше 18");

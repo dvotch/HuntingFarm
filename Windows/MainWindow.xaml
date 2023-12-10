@@ -8,8 +8,8 @@
         Title="{Binding ElementName=MainFrame, Path=Content.Title}" 
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource base_window}"
-        Height="450"
-        Width="800"
+        Height="800"
+        Width="1200"
         Closing="Window_Closing"
         Closed="Window_Closed">
     <Grid>

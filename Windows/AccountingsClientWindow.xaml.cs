@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HuntingFarm.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,25 @@ namespace HuntingFarm.Windows
         public AccountingsClientWindow()
         {
             InitializeComponent();
+            ListBoxEvents.ItemsSource = HuntEntities.GetContext().AccountingEvents.Where(p => p.ClientId == Manager.CurrentUser.id).ToList();
         }
 
-        private void btnSignUpForEvent_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteEvent_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ListBoxEvents.SelectedItem != null)
+            {
+                MessageBoxResult x = MessageBox.Show("Вы уверены, что хотите отписаться от мероприятия?", "Отписаться", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if(x == MessageBoxResult.OK)
+                {
+                    HuntEntities.GetContext().AccountingEvents.Remove(ListBoxEvents.SelectedItem as AccountingEvent);
+                    MessageBox.Show("Успешно удалено");
+                }
+                HuntEntities.GetContext().SaveChanges();
+                Close();
+            } else
+            {
+                MessageBox.Show("Мероприятие не выбрано");
+            }
         }
     }
 }

@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HuntingFarm.Windows"
         mc:Ignorable="d"
-        Title="Выбор даты" Height="150" Width="200" MinHeight="150" MinWidth="200" WindowStartupLocation="CenterOwner" Style="{StaticResource  base_window}">
+        Title="Выбор даты" Height="250" Width="300" MinHeight="250" MinWidth="300" WindowStartupLocation="CenterScreen" Style="{StaticResource  base_window}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Background="{StaticResource  additional}"/>
         <TextBlock Text="Ввод даты" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <DatePicker x:Name="datePicker" Grid.Row="1"/>
+        <DatePicker x:Name="datePicker" Grid.Row="1" VerticalAlignment="Center"/>
         <Button x:Name="btnAddAccount"  Grid.Row="2" Content="Ок" Width="100" Click="btnAddAccount_Click"/>
     </Grid>
 </Window>

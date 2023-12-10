@@ -1,9 +1,11 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using HuntingFarm.Models;
+using HuntingFarm.Windows;
 
 namespace HuntingFarm.Pages
 {
@@ -52,6 +54,7 @@ namespace HuntingFarm.Pages
             {
                 HuntEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 ListBoxHuntings.ItemsSource = HuntEntities.GetContext().Huntings.OrderBy(p => p.Name).ToList();
+                if (Manager.CurrentUser != null && Manager.CurrentUser.RoleId == 1) btnSignUpEvent.Visibility = Visibility.Visible;
             }
         }
 
@@ -79,6 +82,23 @@ namespace HuntingFarm.Pages
         private void ComboHouse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
+        }
+
+        private void btnSignUpEvent_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxHuntings.SelectedIndex == -1)
+            {
+                MessageBox.Show("Мероприятие не выбрано");
+                return;
+            }
+            try
+            {
+                SelectDateWindow selectDateWindow = new SelectDateWindow((ListBoxHuntings.SelectedItem as Hunting).id);
+                selectDateWindow.Show();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

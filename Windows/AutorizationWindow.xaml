@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:HuntingFarm.Windows"
         mc:Ignorable="d"
         Title="Авторизация" Height="200" Width="400" Style="{StaticResource base_window}"
-        MinHeight="350" MinWidth="400" ResizeMode="NoResize">
-    <Grid>
+        MinHeight="400" MinWidth="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid> 
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="40"/>

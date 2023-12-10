@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HuntingFarm.Windows"
         mc:Ignorable="d"
-        Title="Регистрация" Height="450" Width="440" Style="{StaticResource base_window}"
+        Title="Регистрация" Height="480" Width="440" Style="{StaticResource base_window}"
         MinHeight="400" MinWidth="400"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
@@ -15,6 +15,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -29,18 +30,18 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid Background="{StaticResource additional}"/>
-        <TextBlock Text="Регистрация пользователя" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{StaticResource main}" Margin="82,3,81,3"/>
+        <TextBlock Text="Регистрация пользователя" HorizontalAlignment="Center" x:Name="TbTitle" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{StaticResource main}" Margin="82,3,81,3"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Имя*:" VerticalAlignment="Center" Width="120"/>
             <TextBox x:Name="TbName" Width="200" Margin="20 0 0 0" TextAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <TextBlock Text="Фамилия*:" VerticalAlignment="Center" Width="120"/>
-            <TextBox x:Name="TbSurname" Width="200" Margin="20 0 0 0" TextAlignment="Center"/>
+            <TextBox x:Name="TbSurname" Width="200" Margin="20 0 0 0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3">
             <TextBlock Text="Отчество:" VerticalAlignment="Center" Width="120"/>
-            <TextBox x:Name="TbPatronymic" Width="200" Margin="20 0 0 0" TextAlignment="Center"/>
+            <TextBox x:Name="TbPatronymic" Width="200" Margin="20 0 0 0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="4">
             <TextBlock Text="Дата рождения*:" VerticalAlignment="Center" Width="120"/>
@@ -52,7 +53,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="6">
             <TextBlock Text="Почта:" VerticalAlignment="Center" Width="120"/>
-            <TextBox x:Name="TbEmail" Width="200" Margin="20 0 0 0" TextAlignment="Center"/>
+            <TextBox x:Name="TbEmail" Width="200" Margin="20 0 0 0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="7">
             <TextBlock Text="Пароль*:" VerticalAlignment="Center" Width="120"/>
@@ -78,12 +79,16 @@
                   Content="Показать"/>
         <StackPanel Orientation="Horizontal" Grid.Row="9">
             <TextBlock Text="Логин*:" VerticalAlignment="Center" Width="120"/>
-            <TextBox x:Name="TbLogin" Width="200" Margin="20 0 0 0" TextAlignment="Center"/>
+            <TextBox x:Name="TbLogin" Width="200" Margin="20 0 0 0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="10">
             <TextBlock Text="Опыт:" VerticalAlignment="Center" Width="120"/>
-            <TextBox x:Name="TbExperience" Width="200" Margin="20 0 0 0"  TextAlignment="Center"/>
+            <TextBox x:Name="TbExperience" Width="200" Margin="20 0 0 0"/>
         </StackPanel>
-        <Button x:Name="btnRegister" Click="BtnRegister_Click" Content="Регистрация" Grid.Row="11" Grid.RowSpan="2"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Visibility="Collapsed" x:Name="StackPanelRole">
+            <TextBlock Text="Роль:" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="ComboRole" Width="200" Margin="20 0 0 0" DisplayMemberPath="Name"/>
+        </StackPanel>
+        <Button x:Name="btnRegister" Click="BtnRegister_Click" Content="Регистрация" Grid.Row="12" Grid.RowSpan="2"/>
     </Grid>
 </Window>
